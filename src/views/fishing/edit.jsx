@@ -40,15 +40,15 @@ export default function FishingEdit() {
     formData.append("deskripsi", deskripsi);
     formData.append("harga", harga);
     formData.append("lokasi", lokasi);
-    
+
     if (image) {
-      formData.append("image", image);  // Use 'gambar' to match the backend's expected field name
+      formData.append("image", image);  // Use 'image' to match the backend's expected field name
     }
 
     formData.append("_method", "PUT");
 
     await api
-      .post(`/api/fishings/${id}`, formData)  // Make sure to use POST method for form data
+      .post(`/api/fishings/${id}`, formData)  // Use POST method with FormData
       .then(() => {
         navigate("/fishings");
       })
@@ -60,8 +60,17 @@ export default function FishingEdit() {
   return (
     <div className="container mt-5">
       <div className="row">
-        <div className="col-md-12">
-          <div className="card border-0 rounded shadow">
+        <div className="col-md-8 offset-md-2">
+          <div className="d-flex justify-content-between align-items-center mb-3">
+            <button
+              onClick={() => navigate("/fishings")}
+              className="btn btn-md btn-secondary rounded shadow-sm"
+            >
+              Back
+            </button>
+            <h3 className="text-center">Edit Fishing Item</h3>
+          </div>
+          <div className="card border-0 rounded shadow-sm p-4">
             <div className="card-body">
               <form onSubmit={updateFishing}>
                 <div className="mb-3">
@@ -142,12 +151,14 @@ export default function FishingEdit() {
                   )}
                 </div>
 
-                <button
-                  type="submit"
-                  className="btn btn-md btn-primary rounded-sm shadow border-0"
-                >
-                  Update
-                </button>
+                <div className="d-flex justify-content-end">
+                  <button
+                    type="submit"
+                    className="btn btn-md btn-primary rounded shadow-sm"
+                  >
+                    Update
+                  </button>
+                </div>
               </form>
             </div>
           </div>

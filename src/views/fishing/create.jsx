@@ -1,7 +1,5 @@
-// import useState
+// import useState and useNavigate
 import { useState } from "react";
-
-// import useNavigate
 import { useNavigate } from "react-router-dom";
 
 // import API
@@ -56,8 +54,17 @@ export default function FishingCreate() {
   return (
     <div className="container mt-5">
       <div className="row">
-        <div className="col-md-12">
-          <div className="card border-0 rounded shadow">
+        <div className="col-md-8 offset-md-2">
+          <div className="d-flex justify-content-between align-items-center mb-3">
+            <button
+              onClick={() => navigate("/fishings")}
+              className="btn btn-md btn-secondary rounded shadow-sm"
+            >
+              Back
+            </button>
+            <h3 className="text-center">Add New Fishing Item</h3>
+          </div>
+          <div className="card border-0 rounded shadow-sm p-4">
             <div className="card-body">
               <form onSubmit={storeFishing}>
                 <div className="mb-3">
@@ -134,12 +141,14 @@ export default function FishingCreate() {
                   )}
                 </div>
 
-                <button
-                  type="submit"
-                  className="btn btn-md btn-primary rounded-sm shadow border-0"
-                >
-                  Save
-                </button>
+                <div className="d-flex justify-content-end">
+                  <button
+                    type="submit"
+                    className="btn btn-md btn-primary rounded shadow-sm"
+                  >
+                    Save
+                  </button>
+                </div>
               </form>
             </div>
           </div>

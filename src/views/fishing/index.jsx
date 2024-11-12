@@ -37,75 +37,52 @@ export default function FishingIndex() {
 
   return (
     <div className="container mt-5 mb-5">
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h3>Data Fishing</h3>
+        <Link to="/fishings/create" className="btn btn-md btn-success shadow text-white">
+          Tambah Data
+        </Link>
+      </div>
+
       <div className="row">
-        <div className="col-md-12">
-          <Link
-            to="/fishings/create"
-            className="btn btn-md btn-success rounded shadow border-0 mb-3"
-          >
-            ADD NEW FISHING
-          </Link>
-          <div className="card border-0 rounded shadow">
-            <div className="card-body">
-              <table className="table table-bordered">
-                <thead className="bg-dark text-white">
-                  <tr>
-                    <th scope="col">Image</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Location</th>
-                    <th scope="col" style={{ width: "15%" }}>
-                      Actions
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {fishings.length > 0 ? (
-                    fishings.map((fishing, index) => (
-                      <tr key={index}>
-                        <td className="text-center">
-                          <img
-                            src={fishing.image}
-                            alt={fishing.nama}
-                            width="200"
-                            className="rounded"
-                          />
-                        </td>
-                        <td>{fishing.nama}</td>
-                        <td>{fishing.deskripsi}</td>
-                        <td>{fishing.harga}</td>
-                        <td>{fishing.lokasi}</td>
-                        <td className="text-center">
-                          <Link
-                            to={`/fishings/edit/${fishing.id}`}
-                            className="btn btn-sm btn-primary rounded-sm shadow border-0 me-2"
-                          >
-                            EDIT
-                          </Link>
-                          <button
-                            onClick={() => deleteFishing(fishing.id)}
-                            className="btn btn-sm btn-danger rounded-sm shadow border-0"
-                          >
-                            DELETE
-                          </button>
-                        </td>
-                      </tr>
-                    ))
-                  ) : (
-                    <tr>
-                      <td colSpan="6" className="text-center">
-                        <div className="alert alert-danger mb-0">
-                          Data Belum Tersedia!
-                        </div>
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
+        {fishings.length > 0 ? (
+          fishings.map((fishing, index) => (
+            <div className="col-md-4 mb-4" key={index}>
+              <div className="card h-100 border-0 rounded shadow">
+                <img
+                  src={fishing.image}
+                  alt={fishing.nama}
+                  className="card-img-top"
+                  style={{ height: "200px", objectFit: "cover" }}
+                />
+                <div className="card-body">
+                  <h5 className="card-title">{fishing.nama}</h5>
+                  <p className="card-text">{fishing.deskripsi}</p>
+                  <p className="text-muted">Harga: {fishing.harga}</p>
+                  <p className="text-muted">Lokasi: {fishing.lokasi}</p>
+                </div>
+                <div className="card-footer d-flex justify-content-between">
+                  <Link
+                    to={`/fishings/edit/${fishing.id}`}
+                    className="btn btn-sm btn-primary rounded-sm shadow border-0"
+                  >
+                    EDIT
+                  </Link>
+                  <button
+                    onClick={() => deleteFishing(fishing.id)}
+                    className="btn btn-sm btn-danger rounded-sm shadow border-0"
+                  >
+                    DELETE
+                  </button>
+                </div>
+              </div>
             </div>
+          ))
+        ) : (
+          <div className="col-12">
+            <div className="alert alert-danger text-center">Data Belum Tersedia!</div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
