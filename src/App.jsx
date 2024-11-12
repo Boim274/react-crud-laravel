@@ -77,6 +77,15 @@ export default function App() {
                     POSTS
                   </Link>
                 </li>
+                <li className="nav-item">
+                  <Link
+                    to="/fishings"
+                    className="nav-link active"
+                    aria-current="page"
+                  >
+                    FISHING
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
