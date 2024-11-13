@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 
 function Login() {
   // Define state
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [validation, setValidation] = useState([]);
+  const [validation, setValidation] = useState({});
 
   // Define navigate
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ function Login() {
     formData.append('password', password);
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/login', formData);
+      const response = await axios.post('http://localhost:8000/api/login', formData);
 
       // Set token in localStorage
       localStorage.setItem('token', response.data.token);
@@ -37,7 +37,11 @@ function Login() {
       // Redirect to dashboard
       navigate('/dashboard');
     } catch (error) {
-      setValidation(error.response.data); // Assign error to validation state
+      if (error.response && error.response.data) {
+        setValidation(error.response.data); // Assign error to validation state
+      } else {
+        setValidation({ message: 'An unexpected error occurred.' });
+      }
     }
   };
 
@@ -90,7 +94,7 @@ function Login() {
                 </div>
               </form>
               <div className="mt-3 text-center">
-                <small>Don't have an account? <a href="/register" className="text-decoration-none">Register here</a></small>
+                <small>Don't have an account? <Link to="/register" className="text-decoration-none">Register here</Link></small>
               </div>
             </div>
           </div>

@@ -26,7 +26,7 @@ function Register() {
 
     // Send data to server
     try {
-      await axios.post('http://127.0.0.1:8000/api/register', formData);
+      await axios.post('http://localhost:8000/api/register', formData);
       navigate('/dashboard'); // Redirect to dashboard after successful registration
     } catch (error) {
       setValidation(error.response.data); // Assign error to validation state

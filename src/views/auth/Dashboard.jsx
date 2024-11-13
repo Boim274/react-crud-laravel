@@ -9,11 +9,18 @@ function Dashboard() {
 
     const fetchData = async () => {
         try {
-            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-            const response = await axios.get('http://localhost:8000/api/user');
+            const response = await axios.get('http://localhost:8000/api/user', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
             setUser(response.data);
         } catch (error) {
             console.error("Failed to fetch user data", error);
+            if (error.response && error.response.status === 401) {
+                localStorage.removeItem("token");
+                navigate('/');
+            }
         }
     };
 
@@ -27,8 +34,11 @@ function Dashboard() {
 
     const logoutHandler = async () => {
         try {
-            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-            await axios.post('http://localhost:8000/api/logout');
+            await axios.post('http://localhost:8000/api/logout', {}, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
             localStorage.removeItem("token");
             navigate('/');
         } catch (error) {
@@ -37,6 +47,7 @@ function Dashboard() {
     };
 
     return (
+        
         <div className="container" style={{ marginTop: "50px" }}>
             <div className="row justify-content-center">
                 <div className="col-md-12">

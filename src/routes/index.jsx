@@ -14,9 +14,9 @@ import Dashboard from "../views/auth/Dashboard.jsx";
 function RoutesIndex() {
     return (
         <Routes>  {/* Using Routes instead of Switch */}
-            <Route path="/login" element={<Login />} /> 
+            <Route path="/" element={<Login />} /> 
             <Route path="/register" element={<Register />} />
-            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/posts" element={<PostIndex />} />
             <Route path="/posts/create" element={<PostCreate />} />

@@ -12,7 +12,7 @@ import RoutesIndex from './routes';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-    <App />
+    <RoutesIndex />
     </BrowserRouter>
   </React.StrictMode>,
 )
