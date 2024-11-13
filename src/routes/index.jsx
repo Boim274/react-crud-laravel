@@ -16,14 +16,14 @@ function RoutesIndex() {
         <Routes>  {/* Using Routes instead of Switch */}
             <Route path="/" element={<Login />} /> 
             <Route path="/register" element={<Register />} />
-            {/* <Route path="/home" element={<Home />} /> */}
+            <Route path="/home" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            {/* <Route path="/posts" element={<PostIndex />} /> */}
-            {/* <Route path="/posts/create" element={<PostCreate />} /> */}
-            {/* <Route path="/posts/edit/:id" element={<PostEdit />} /> */}
-            {/* <Route path="/fishings" element={<FishingIndex />} /> */}
-            {/* <Route path="/fishings/create" element={<FishingCreate />} /> */}
-            {/* <Route path="/fishings/edit/:id" element={<FishingEdit />} /> */}
+            <Route path="/posts" element={<PostIndex />} />
+            <Route path="/posts/create" element={<PostCreate />} />
+            <Route path="/posts/edit/:id" element={<PostEdit />} />
+            <Route path="/fishings" element={<FishingIndex />} />
+            <Route path="/fishings/create" element={<FishingCreate />} />
+            <Route path="/fishings/edit/:id" element={<FishingEdit />} />
         </Routes>
     );
 }
